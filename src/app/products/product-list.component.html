@@ -1,0 +1,58 @@
+<div class='card'>
+    <div class='card-header'>
+      {{pageTitle}}
+    </div>
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-2'>Filter by:</div>
+        <div class='col-md-4'>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <h4>Filtered by:</h4>
+        </div>
+      </div>
+      <div class='table-responsive'>
+        <table class='table' *ngIf="products.length">
+          <thead>
+            <tr>
+              <th>
+                <button class='btn btn-primary'>
+                  Show Image
+                </button>
+              </th>
+              <th>Product</th>
+              <th>Sale</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total in Cart</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products">
+              <td>
+                <img [src]="product.imageUrl"
+                  [title] = "product.name"
+                  [style.width.px] = "imageWidth"
+                  [style.margin.px] = "imageMargin">
+              </td>
+              <td>{{product.name}}</td>
+              <td>{{product.onSale}}</td>
+              <td>
+                <button class='btn btn-primary' (click)="addQty(product)">+</button>
+                {{product.qty}}
+                <button class='btn btn-primary' (click)="subtractQty(product)">-</button>
+              </td>
+              <td>{{product.price | currency}}</td>
+              <td>{{product.price * product.qty | currency}}</td>
+            </tr>
+            <tr>
+              <td colspan="6">Total: {{cartQty() > 0 ? cartFinalPrice() : '0' | currency}}</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
