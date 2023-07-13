@@ -1,28 +1,16 @@
 <div class='card'>
     <div class='card-header'>
       {{pageTitle}}
-    </div>
-    <div class='card-body'>
-      <div class='row'>
-        <div class='col-md-2'>Filter by:</div>
-        <div class='col-md-4'>
-        </div>
-      </div>
-      <div class='row'>
-        <div class='col-md-6'>
-          <h4>Filtered by:</h4>
-        </div>
       </div>
       <div class='table-responsive'>
         <table class='table' *ngIf="products.length">
           <thead>
             <tr>
-              <th>
-                <button class='btn btn-primary'>
-                  Show Image
-                </button>
+              <th>Products
               </th>
-              <th>Product</th>
+              <th>
+                <div class="product-header">Description</div>
+              </th>
               <th>Sale</th>
               <th>Quantity</th>
               <th>Price</th>
@@ -37,7 +25,7 @@
                   [style.width.px] = "imageWidth"
                   [style.margin.px] = "imageMargin">
               </td>
-              <td>{{product.name}}</td>
+              <td>{{product.name}}, <br> {{productInStock(product)}}</td>
               <td>{{product.onSale}}</td>
               <td>
                 <button class='btn btn-primary' (click)="addQty(product)">+</button>
@@ -50,9 +38,11 @@
             <tr>
               <td colspan="6">Total: {{cartQty() > 0 ? cartFinalPrice() : '0' | currency}}</td>
             </tr>
+            <tr>
+              <td colspan="6">Total items in cart : {{cartQty()}}</td>
+            </tr>
             
           </tbody>
         </table>
       </div>
     </div>
-  </div>

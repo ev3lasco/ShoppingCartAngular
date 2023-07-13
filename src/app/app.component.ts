@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   </div>`
 })
 export class AppComponent {
-  pageTitle = 'Angular: Getting Started';
+  pageTitle = 'I LOVE BAKING SODA';
 }
